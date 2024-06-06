@@ -16,8 +16,10 @@ This will create a backup of the current "project.pbxproj" file
 #### Click "Next"
 #### Enter in Product Name "TouchChatUITests"
 #### In Target to be Tested select "TouchChatHD_WordPower SIMULATOR"
-### Select Finished
-### Adding the "TouchChatUITests"
+#### Select Finished
+The target should be added
+
+### Adding the "TouchChatUITests" new tests
 ....
 ## Running a .sh script
 To make the script executable and run it, follow these steps:
