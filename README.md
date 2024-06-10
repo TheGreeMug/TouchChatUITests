@@ -33,3 +33,19 @@ To make the script executable and run it, follow these steps:
 
 #### Run the script:
 `./revert_and_backup.sh`
+
+## Adding a new scheme
+This should be done after a valid target has been created with the name "TouchChatUITests"
+### Open xCode with the project in question
+### Select from the top Product --> Scheme
+### Select the target to be "TouchChatUITests"
+### Fill in the name with "TouchChatUITests"
+### Press OK 
+A new scheme should be generated
+
+## Configure "TouchChatUITests" for running.
+If the message: "The scheme "TouchChatUITests" is not configured for running. Edit the scheme to enable running, or cancel the action.",
+### Press "Edit Scheme"
+### Select "Build" from the left side of the newly opened modal
+### Tick "Analyse, Run, Profile, Archive"
+### Press "Close"
