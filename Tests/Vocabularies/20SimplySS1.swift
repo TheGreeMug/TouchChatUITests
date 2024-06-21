@@ -1,42 +1,72 @@
-//
-//  20SimplySS1.swift
-//  TouchChatUITests
-//
-//  Created by Alin Voinescu on 20.06.2024.
+//  Created by Alin Voinescu on 24.04.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//
 
 import XCTest
 
-final class _0SimplySS1: XCTestCase {
+final class e2e_TCHDWPLaunchWordPower20SimplySS: XCTestCase {
+    
+    var app = XCUIApplication()
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+        try super.setUpWithError()
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        
+        let pages = Pages(app: app)
+        
+        app = XCUIApplication()
+        app.launchArguments.append("--reset")
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        pages.clearAppCache()
+        pages.resetPersistentStorage()
+    }
+    
+    override func tearDownWithError() throws {
+        app.terminate()
+        try super.tearDownWithError()
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+       
+    
+    func testLaunchWordPower20SimplySS() throws {
+        
+        let pages = Pages(app: app)
+        app.launch()
+        
+        pages.wordPowerVocab.tap()
+        pages.wordPower20Position.tap()
+        pages.wordPower20SimplySS.tap()
+        
+        pages.verifyTheVocab(lastElement: "GROUPS", vocabWord: "I like", vocabElement: 4, nameElement: "QUESTIONS")
+        
+        XCTAssertTrue(app.buttons["to drink"].exists)
+        app.buttons["to drink"].tap()
+        app.buttons["juice"].tap()
+        
+        pages.sdbTexts(sdbText: "I like to drink juice ")
+        
+        pages.backButton.tap()
+        pages.backButton.tap()
+        
+        pages.backToVocab();
+        
+        print("WordPower 20 Simply SS Test Finished with success!")
+        
+        app.terminate()
+   
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

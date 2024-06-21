@@ -10,79 +10,52 @@ import XCTest
 
 final class e2e_TCHDWPLaunchSintaxis4x5SpanishSS: XCTestCase {
     
-    var app: XCUIApplication!
-    
-    override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
-        
-        app = XCUIApplication()
-        app.launch()
-        
-        clearAppCache()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-
-    func clearAppCache(){
-        let appDomain = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: appDomain)
-    }
-
-    override class var runsForEachTargetApplicationUIConfiguration: Bool {
-        //Set this to false in order to run it only once on the default configuration
-        false
-    }
+   
+    var app = XCUIApplication()
 
     override func setUpWithError() throws {
-        //XCUIDevice.shared.orientation = .portrait
+        try super.setUpWithError()
         continueAfterFailure = false
+        
+        let pages = Pages(app: app)
+        
+        app = XCUIApplication()
+        app.launchArguments.append("--reset")
+        app.launch()
+        pages.clearAppCache()
+        pages.resetPersistentStorage()
+    }
+    
+    override func tearDownWithError() throws {
+        app.terminate()
+        try super.tearDownWithError()
     }
 
        
     
     func testLaunchSintaxis4x5SpanishSS() throws {
         
-        let app = XCUIApplication()
+        let pages = Pages(app: app)
         app.launch()
         
         
-        XCUIApplication().tables.staticTexts["Spanish  "].tap()
-        XCUIApplication().tables.staticTexts["sintaxis 4 x 5 Spanish SS  "].tap()
+        pages.SpanishVocab.tap()
+        pages.sintaxis4x5Spanish.tap()
         
-        let lastElement = app.buttons[" transporte"]
-        let existsTheElement = lastElement.waitForExistence(timeout: 5)
-        XCTAssertTrue(existsTheElement, "The element is not visible")
+        pages.verifyTheVocab(lastElement: " transporte", vocabWord: "comida", vocabElement: 4, nameElement: "lugares")
         
-        let elements = app.buttons.allElementsBoundByIndex
-        let vocabElement = elements[4]
-        let vocabWord = app.buttons["comida"]
-        
-        XCTAssertGreaterThan(elements.count, 4, "There are not enough elements")
-        XCTAssertEqual(vocabElement.label, "lugares", "The title is not correct")
-        XCTAssertTrue(vocabWord.exists);
-        
-        vocabWord.tap()
         
         XCTAssertTrue(app.buttons["pescado"].exists)
         app.buttons["pescado"].tap()
         app.buttons["pan"].tap()
         
+        pages.sdbTexts(sdbText: "Pescado pan ")
         
-        let sdbElement = app.textFields["Pescado pan "]
-        XCTAssertTrue(sdbElement.exists, "Searched text not found")
+        pages.backButton.tap()
         
-        app.buttons["Back"].tap()
+        pages.backToVocab();
         
-        
-        app.navigationBars.buttons["Vocab"].tap()
-        app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
-        
-        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
-        
-        print("Test Finished with success!")
+        print("SinSintaxis 4x5 Spanish Test Finished with success!")
         
         app.terminate()
         

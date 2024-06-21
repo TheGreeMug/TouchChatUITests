@@ -10,88 +10,51 @@ import XCTest
 
 final class e2e_TCHDWPLaunchmultiChat15SS: XCTestCase {
     
-    var app: XCUIApplication!
-    
-    override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
-        
-        app = XCUIApplication()
-        app.launch()
-        
-        clearAppCache()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-
-    func clearAppCache(){
-        let appDomain = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: appDomain)
-    }
-
-    override class var runsForEachTargetApplicationUIConfiguration: Bool {
-        //Set this to false in order to run it only once on the default configuration
-        false
-    }
+    var app = XCUIApplication()
 
     override func setUpWithError() throws {
-        //XCUIDevice.shared.orientation = .portrait
+        try super.setUpWithError()
         continueAfterFailure = false
+        
+        let pages = Pages(app: app)
+        
+        app = XCUIApplication()
+        app.launchArguments.append("--reset")
+        app.launch()
+        pages.clearAppCache()
+        pages.resetPersistentStorage()
     }
+    
+    override func tearDownWithError() throws {
+        app.terminate()
+        try super.tearDownWithError()
+    }
+       
 
        
     
     func testLaunchmultiChat15SS() throws {
         
-        let app = XCUIApplication()
+        let pages = Pages(app: app)
         app.launch()
         
+        pages.SpanishVocab.tap()
+        pages.multiChat15Spanish.tap()
         
-        XCUIApplication().tables.staticTexts["Spanish  "].tap()
-        XCUIApplication().tables.staticTexts["MultiChat15 Spanish SS  "].tap()
-        
-        let lastElement = app.buttons["Mis escenas "]
-        let existsTheElement = lastElement.waitForExistence(timeout: 5)
-        XCTAssertTrue(existsTheElement, "The element is not visible")
-        
-        let elements = app.buttons.allElementsBoundByIndex
-        let vocabElement = elements[4]
-        let vocabWord = app.buttons["Yo necesito"]
-        
-        XCTAssertGreaterThan(elements.count, 4, "There are not enough elements")
-        XCTAssertEqual(vocabElement.label, "Personas", "The title is not correct")
-        XCTAssertTrue(vocabWord.exists);
-        
-        vocabWord.tap()
+        pages.verifyTheVocab(lastElement: "Mis escenas ", vocabWord: "Yo necesito", vocabElement: 4, nameElement: "Personas")
         
         XCTAssertTrue(app.buttons["ir a la oficina"].exists)
         app.buttons["ir a la oficina"].tap()
         app.buttons["BackButton"].tap()
         
+        pages.sdbTexts(sdbText: "Yo necesito ir a la ")
         
-        let sdbElement = app.textFields["Yo necesito ir a la "]
-        XCTAssertTrue(sdbElement.exists, "Searched text not found")
+        pages.backToVocab();
         
-        
-        app.navigationBars.buttons["Vocab"].tap()
-        app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
-        
-        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
-        
-        print("Test Finished with success!")
+        print("MutiChat 15 Test Finished with success!")
         
         app.terminate()
-        
-
-        // Insert steps here to perform after app launch but before taking a screenshot,
-        // such as logging into a test account or navigating somewhere in the app
-
-//        let attachment = XCTAttachment(screenshot: app.screenshot())
-//        attachment.name = "Launch Screen"
-//        attachment.lifetime = .keepAlways
-//        add(attachment)
+      
     }
 }
 

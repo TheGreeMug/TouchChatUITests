@@ -15,7 +15,38 @@ class Pages {
     let permissionScreen: XCUIElement
     let yesButton: XCUIElement
     let noButton: XCUIElement
+    let backButton: XCUIElement
     var vocabName = "vocabulary"
+    //Vocabs
+    let SpanishVocab = XCUIApplication().tables.staticTexts["Spanish  "]
+    let sintaxis4x4English = XCUIApplication().tables.staticTexts["sin sintaxis 4 x 4 English SS  "]
+    let sintaxis4x4Spanish = XCUIApplication().tables.staticTexts["sin sintaxis 4 x 4 Spanish SS  "]
+    let sintaxis4x5English = XCUIApplication().tables.staticTexts["sintaxis 4 x 5 English SS  "]
+    let sintaxis4x5Spanish = XCUIApplication().tables.staticTexts["sintaxis 4 x 5 Spanish SS  "]
+    let afasiaEspanol = XCUIApplication().tables.staticTexts["Afasia Español SS  "]
+    let multiChat15Bilingual = XCUIApplication().tables.staticTexts["MultiChat 15 Spanish Bilingual SS  "]
+    let multiChat15Spanish  = XCUIApplication().tables.staticTexts["MultiChat15 Spanish SS  "]
+    let wordPowerVocab = XCUIApplication().tables.staticTexts["WordPower  "]
+    let wordPower25Position = XCUIApplication().tables.staticTexts["25 Position  "]
+    let wordPower25TouchScan = XCUIApplication().tables.staticTexts["WordPower25 Touch & Scan SS  "]
+    let wordPower42Position = XCUIApplication().tables.staticTexts["42 Position  "]
+    let wordPower42SS = XCUIApplication().tables.staticTexts["WordPower42 SS  "]
+    let wordPower48Position = XCUIApplication().tables.staticTexts["48 Position  "]
+    let wordPower48SS = XCUIApplication().tables.staticTexts["WordPower48 SS  "]
+    let wordPower60Position = XCUIApplication().tables.staticTexts["60 Position  "]
+    let wordPower60SS = XCUIApplication().tables.staticTexts["WordPower60 SS  "]
+    let wordPower80Position = XCUIApplication().tables.staticTexts["80 Position  "]
+    let wordPower80SS = XCUIApplication().tables.staticTexts["WordPower80 SS  "]
+    let wordPower108Position = XCUIApplication().tables.staticTexts["108 Position  "]
+    let wordPower108SS = XCUIApplication().tables.staticTexts["WordPower108 SS  "]
+    let wordPower60BasicSS = XCUIApplication().tables.staticTexts["WordPower60 Basic SS  "]
+    let wordPower42BasicSS = XCUIApplication().tables.staticTexts["WordPower42 Basic SS  "]
+    let wordPower20Position = XCUIApplication().tables.staticTexts["20 Position  "]
+    let wordPower20SimplySS = XCUIApplication().tables.staticTexts["WordPower20 Simply SS  "]
+    let wordPower140Position = XCUIApplication().tables.staticTexts["140 Position  "]
+    let wordPower140SS = XCUIApplication().tables.staticTexts["WordPower140 SS  "]
+    let wordPower108SSKeyboard = XCUIApplication().tables.staticTexts["WordPower108 with Keyboard SS  "]
+    
     lazy var mainPage: MainPage = {
         return MainPage(app: XCUIApplication(), vocabName: vocabName)
     }()
@@ -26,12 +57,42 @@ class Pages {
         permissionScreen = app.buttons["Allow"]
         yesButton = app.buttons["Yes"]
         noButton = app.buttons["Yes"]
+        backButton = app.buttons["Back"]
     }
     
     func clearAppCache() {
         let appDomain = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: appDomain)
         UserDefaults.standard.synchronize()
+    }
+    //new functions
+    func backToVocab(){
+        app.navigationBars.buttons["Vocab"].tap()
+        app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
+        
+        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
+    }
+    
+    func sdbTexts(sdbText: String){
+        let sdbElement = app.textFields[sdbText]
+        XCTAssertTrue(sdbElement.exists, "Searched text not found")
+    }
+    
+    func verifyTheVocab(lastElement: String, vocabWord: String, vocabElement: NSInteger, nameElement: String){
+        let lastElementVocab = app.buttons[lastElement]
+        let existsTheElement = lastElementVocab.waitForExistence(timeout: 5)
+        XCTAssertTrue(existsTheElement, "The last element of the vocabulary is not visible")
+        
+        let elements = app.buttons.allElementsBoundByIndex
+        let vocabElementNumber = elements[vocabElement]
+        let vocabWordVocab = app.buttons[vocabWord]
+        let nameElementVocab = app.buttons[nameElement]
+        
+        XCTAssertGreaterThan(elements.count, 3, "There are not enough elements")
+        XCTAssertEqual(vocabElementNumber.label, nameElement, "The title is not correct")
+        XCTAssertTrue(vocabWordVocab.exists);
+        
+        vocabWordVocab.tap()
     }
     
     func resetPersistentStorage() {

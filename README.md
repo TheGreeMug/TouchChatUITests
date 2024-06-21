@@ -1,6 +1,8 @@
 # TouchChatUITests
  E2E tests for TouchChat
 
+
+unde sa fie userul inainte de a clona
 ## Steps for having the code in the source project
 ### Moving the tests under the main project
 #### Copy all the files from this project to the root directory of the main project

@@ -142,7 +142,7 @@ class MainPage {
         editButton.tap()
         deleteVocabButtonCircle.tap()
         deleteVocabButtonSquare.tap()
-        app.alerts["Delete pisoi Vocabulary"].scrollViews.otherElements.buttons["Continue"].tap()
+        app.alerts["Delete Vocabulary"].scrollViews.otherElements.buttons["Continue"].tap()
         verifyTextDoesNotExistScroll(textVerified: vocabDesc, maxScrolls: 10)
     }
     
