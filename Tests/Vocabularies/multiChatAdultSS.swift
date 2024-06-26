@@ -10,86 +10,51 @@ import XCTest
 
 final class e2e_TCHDWPLaunchmultiChatAdult: XCTestCase {
     
-    var app: XCUIApplication!
-    
-    override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
-        
-        app = XCUIApplication()
-        app.launch()
-        
-        clearAppCache()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-
-    func clearAppCache(){
-        let appDomain = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: appDomain)
-    }
-
-    override class var runsForEachTargetApplicationUIConfiguration: Bool {
-        //Set this to false in order to run it only once on the default configuration
-        false
-    }
+    var app = XCUIApplication()
 
     override func setUpWithError() throws {
-        //XCUIDevice.shared.orientation = .portrait
+        try super.setUpWithError()
         continueAfterFailure = false
+        
+        let pages = Pages(app: app)
+        
+        app = XCUIApplication()
+        app.launchArguments.append("--reset")
+        app.launch()
+        pages.clearAppCache()
+        pages.resetPersistentStorage()
+    }
+    
+    override func tearDownWithError() throws {
+        app.terminate()
+        try super.tearDownWithError()
     }
 
-       
-    
     func testLaunchmultiChatAdult() throws {
         
-        let app = XCUIApplication()
+        let pages = Pages(app: app)
         app.launch()
         
-        XCUIApplication().tables.staticTexts["MultiChat 15  "].tap()
-        XCUIApplication().tables.staticTexts["MultiChat 15 Adult SS  "].tap()
+        pages.multiChat15Vocab.tap()
+        pages.multiChatAdultSS.tap()
         
-        let elements = app.buttons.allElementsBoundByIndex
-        let tenthElement = elements[10]
-        let adultWord = app.buttons["I want"]
-        
-        XCTAssertGreaterThan(elements.count, 10, "There are not enough elements")
-        XCTAssertEqual(tenthElement.label, "I want", "The title is correct")
-        XCTAssertTrue(adultWord.exists);
-        
-        adultWord.tap()
+        pages.verifyTheVocab(lastElement: "Shopping", vocabWord: "I want", vocabElement: 10, nameElement: "I don't want")
         
         XCTAssertTrue(app.buttons["to watch"].exists)
         app.buttons["to watch"].tap()
         app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
         
+        pages.sdbTexts(sdbText: "I want ")
+        pages.backButton.tap()
+        pages.backButton.tap()
+    
+        pages.backToVocab();
         
-        let sdbElement = app.textFields["I want "]
-        XCTAssertTrue(sdbElement.exists, "Searched text not found")
-        
-        app.buttons["Back"].tap()
-        app.buttons["Back"].tap()
-        
-        app.navigationBars.buttons["Vocab"].tap()
-        app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
-        
-        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
-        
-        print("Test Finished with success!")
+        print("multiChatAdult15 SS Test Finished with success!")
         
         app.terminate()
         
-
-        // Insert steps here to perform after app launch but before taking a screenshot,
-        // such as logging into a test account or navigating somewhere in the app
-
-//        let attachment = XCTAttachment(screenshot: app.screenshot())
-//        attachment.name = "Launch Screen"
-//        attachment.lifetime = .keepAlways
-//        add(attachment)
     }
 }
 

@@ -1,42 +1,88 @@
-//
-//  communicationJourney.swift
-//  TouchChatUITests
-//
-//  Created by Alin Voinescu on 25.06.2024.
+//  Created by Alin Voinescu on 24.04.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//
 
 import XCTest
 
-final class communicationJourney: XCTestCase {
+final class e2e_TCHDWPLaunchCommunicationJourneyFrancais: XCTestCase {
+    
+   
+    var app = XCUIApplication()
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+        try super.setUpWithError()
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        
+        let pages = Pages(app: app)
+        
+        app = XCUIApplication()
+        app.launchArguments.append("--reset")
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        pages.clearAppCache()
+        pages.resetPersistentStorage()
+    }
+    
+    override func tearDownWithError() throws {
+        app.terminate()
+        try super.tearDownWithError()
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    func testLaunchSintaxis4x5SpanishSS() throws {
+        
+        let pages = Pages(app: app)
+        app.launch()
+        
+        
+        pages.frenchVocab.tap()
+        pages.communicationFrancaisSS.tap()
+        
+        pages.verifyTheVocab(lastElement: "Échelles", vocabWord: "Social", vocabElement: 3, nameElement: "Objets")
+        
+        XCTAssertTrue(app.buttons["Comment ça va?"].exists)
+        app.buttons["Comment ça va?"].tap()
+        
+        pages.sdbTexts(sdbText: "Comment ça va? ")
+        pages.backButton.tap()
+        
+        pages.backToVocab();
+        
+        print("Communication francais Test Finished with success!")
+        
+        app.terminate()
+        
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

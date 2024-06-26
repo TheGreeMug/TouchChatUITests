@@ -1,10 +1,5 @@
-//
-//  basicTest.swift
-//  TouchChatTests
-//
 //  Created by Alin Voinescu on 24.04.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//
 
 import XCTest
 

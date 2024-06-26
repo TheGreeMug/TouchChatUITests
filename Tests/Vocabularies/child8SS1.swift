@@ -5,84 +5,49 @@ import XCTest
 
 final class e2e_TCHDWPLaunchchild8SS: XCTestCase {
     
-    var app: XCUIApplication!
-    
-    override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
-        
-        app = XCUIApplication()
-        app.launch()
-        
-        clearAppCache()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-
-    func clearAppCache(){
-        let appDomain = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: appDomain)
-    }
-
-    override class var runsForEachTargetApplicationUIConfiguration: Bool {
-        //Set this to false in order to run it only once on the default configuration
-        false
-    }
+    var app = XCUIApplication()
 
     override func setUpWithError() throws {
-        //XCUIDevice.shared.orientation = .portrait
+        try super.setUpWithError()
         continueAfterFailure = false
+        
+        let pages = Pages(app: app)
+        
+        app = XCUIApplication()
+        app.launchArguments.append("--reset")
+        app.launch()
+        pages.clearAppCache()
+        pages.resetPersistentStorage()
     }
-
-       
+    
+    override func tearDownWithError() throws {
+        app.terminate()
+        try super.tearDownWithError()
+    }
     
     func testLaunchchild8SS() throws {
         
-        let app = XCUIApplication()
+        let pages = Pages(app: app)
         app.launch()
         
-        XCUIApplication().tables.staticTexts["My QuickChat  "].tap()
-        XCUIApplication().tables.staticTexts["Child  "].tap()
-        XCUIApplication().tables.staticTexts["My QuickChat Child 8 SS  "].tap()
+        pages.myQuickChatVocab.tap()
+        pages.childQuickChatVocab.tap()
+        pages.quickChatChild8SS.tap()
         
-        let elements = app.buttons.allElementsBoundByIndex
-        let twentiethElement = elements[19]
-        let childWord = app.buttons["Greetings/Closings"]
-        
-        XCTAssertGreaterThan(elements.count, 19, "There are not enough elements")
-        XCTAssertEqual(twentiethElement.label, "Greetings/Closings", "The title is correct")
-        XCTAssertTrue(childWord.exists);
-        
-        childWord.tap()
+        pages.verifyTheVocab(lastElement: "Playing", vocabWord: "Greetings/Closings", vocabElement: 18, nameElement: "Greetings/Closings")
         
         XCTAssertTrue(app.buttons["Hey!"].exists)
         app.buttons["Hey!"].tap()
         
+        pages.sdbTexts(sdbText: "Hey! ")
+        pages.backButton.tap()
+    
+        pages.backToVocab();
         
-        let sdbElement = app.textFields["Hey! "]
-        XCTAssertTrue(sdbElement.exists, "Searched text not found")
-        
-        app.buttons["Back"].tap()
-        
-        app.navigationBars.buttons["Vocab"].tap()
-        app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
-        
-        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
-        
-        print("Test Finished with success!")
+        print("myQuickChat Child 8SS Test Finished with success!")
         
         app.terminate()
         
-
-        // Insert steps here to perform after app launch but before taking a screenshot,
-        // such as logging into a test account or navigating somewhere in the app
-
-//        let attachment = XCTAttachment(screenshot: app.screenshot())
-//        attachment.name = "Launch Screen"
-//        attachment.lifetime = .keepAlways
-//        add(attachment)
     }
 }
 
