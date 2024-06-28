@@ -28,7 +28,7 @@ final class e2e_TCHDWPLaunchTecladoSS: XCTestCase {
 
        
     
-    func testLaunchSintaxis4x5SpanishSS() throws {
+    func testLaunchTecladoSS() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -43,7 +43,7 @@ final class e2e_TCHDWPLaunchTecladoSS: XCTestCase {
         XCTAssertTrue(app.buttons["Hola, ¿cómo estás?"].exists)
         app.buttons["Hola, ¿cómo estás?"].tap()
         
-        pages.sdbTexts(sdbText: "Hola, ¿cómo estás? ")
+        pages.checkSdbText(sdbText: "Hola, ¿cómo estás? ")
         
         pages.backButton.tap()
         

@@ -26,7 +26,7 @@ final class e2e_TCHDWPLaunchMultiChat15Francais: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testLaunchSintaxis4x5SpanishSS() throws {
+    func testLaunchMultiChat15FrancaisSS() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -40,7 +40,7 @@ final class e2e_TCHDWPLaunchMultiChat15Francais: XCTestCase {
         app.buttons["de prendre un pause"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "J'ai besoin de prendre une ")
+        pages.checkSdbText(sdbText: "J'ai besoin de prendre une ")
         
         pages.backToVocab();
         

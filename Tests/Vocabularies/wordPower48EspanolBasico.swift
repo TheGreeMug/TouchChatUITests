@@ -28,7 +28,7 @@ final class e2e_TCHDWPLaunchwordPower48EspanolBasico: XCTestCase {
 
        
     
-    func testLaunchSintaxis4x5SpanishSS() throws {
+    func testLaunchWordPower48EspanolBasico() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -45,7 +45,7 @@ final class e2e_TCHDWPLaunchwordPower48EspanolBasico: XCTestCase {
         app.buttons["estar"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "Me gusta ")
+        pages.checkSdbText(sdbText: "Me gusta ")
         
         pages.backToVocab();
         

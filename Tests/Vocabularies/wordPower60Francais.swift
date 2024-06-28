@@ -26,7 +26,7 @@ final class e2e_TCHDWPLaunchwordPower60Francais: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testLaunchSintaxis4x5SpanishSS() throws {
+    func testLaunchWordPower60FrancaisSS() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -40,7 +40,7 @@ final class e2e_TCHDWPLaunchwordPower60Francais: XCTestCase {
         app.buttons["donne"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "Je ")
+        pages.checkSdbText(sdbText: "Je ")
         
         pages.backToVocab();
         

@@ -42,7 +42,7 @@ final class e2e_TCHDWPLaunch4deBaseSS: XCTestCase {
         app.buttons["lait"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "Je veux boire du ")
+        pages.checkSdbText(sdbText: "Je veux boire du ")
         
         pages.backToVocab();
         

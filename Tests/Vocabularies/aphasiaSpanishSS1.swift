@@ -40,7 +40,7 @@ final class e2e_TCHDWPLaunchaphasiaSpanishSS: XCTestCase {
         XCTAssertTrue(app.buttons["estresado"].exists)
         app.buttons["estresado"].tap()
         
-        pages.sdbTexts(sdbText: "Estresado ")
+        pages.checkSdbText(sdbText: "Estresado ")
         pages.backButton.tap()
         pages.backButton.tap()
     

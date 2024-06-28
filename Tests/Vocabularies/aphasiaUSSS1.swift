@@ -40,7 +40,7 @@ final class e2e_TCHDWPLaunchaphasiaUSSS: XCTestCase {
         XCTAssertTrue(app.buttons["happy"].exists)
         app.buttons["happy"].tap()
         
-        pages.sdbTexts(sdbText: "Happy ")
+        pages.checkSdbText(sdbText: "Happy ")
         pages.backButton.tap()
         pages.backButton.tap()
     

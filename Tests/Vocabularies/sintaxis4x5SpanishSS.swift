@@ -44,7 +44,7 @@ final class e2e_TCHDWPLaunchSintaxis4x5SpanishSS: XCTestCase {
         app.buttons["pescado"].tap()
         app.buttons["pan"].tap()
         
-        pages.sdbTexts(sdbText: "Pescado pan ")
+        pages.checkSdbText(sdbText: "Pescado pan ")
         
         pages.backButton.tap()
         

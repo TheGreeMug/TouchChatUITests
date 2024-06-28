@@ -45,7 +45,7 @@ final class e2e_TCHDWPLaunchmultiChat15BilingualSS: XCTestCase {
         app.buttons["FRUTA - FRUIT"].tap()
         app.buttons["uvas - grapes"].tap()
         
-        pages.sdbTexts(sdbText: "Yo quiero comer uvas ")
+        pages.checkSdbText(sdbText: "Yo quiero comer uvas ")
         
         pages.backButton.tap()
         pages.backButton.tap()

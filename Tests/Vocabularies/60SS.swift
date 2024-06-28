@@ -49,7 +49,7 @@ final class e2e_TCHDWPLaunchWordPower60SS: XCTestCase {
         app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "Finish ")
+        pages.checkSdbText(sdbText: "Finish ")
         
         pages.backToVocab();
         

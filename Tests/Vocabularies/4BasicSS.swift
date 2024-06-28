@@ -26,7 +26,7 @@ final class e2e_TCHDWPLaunch4BasicSS: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testLaunchaphasiaUSSS() throws {
+    func testLaunch4BasicSS() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -40,7 +40,7 @@ final class e2e_TCHDWPLaunch4BasicSS: XCTestCase {
         app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "I want ")
+        pages.checkSdbText(sdbText: "I want ")
     
         pages.backToVocab();
         

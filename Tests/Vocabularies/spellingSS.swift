@@ -25,7 +25,7 @@ final class e2e_TCHDWPLaunchSpellingSS: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testLaunchaphasiaUSSS() throws {
+    func testLaunchSpellingSS() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -37,7 +37,7 @@ final class e2e_TCHDWPLaunchSpellingSS: XCTestCase {
         XCTAssertTrue(app.buttons["more "].exists)
         app.buttons["more "].tap()
         
-        pages.sdbTexts(sdbText: "Mom more ")
+        pages.checkSdbText(sdbText: "Mom more ")
     
         pages.backToVocab();
         

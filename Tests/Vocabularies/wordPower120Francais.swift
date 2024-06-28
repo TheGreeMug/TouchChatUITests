@@ -26,7 +26,7 @@ final class e2e_TCHDWPLaunchwordPower120Francais: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testLaunchSintaxis4x5SpanishSS() throws {
+    func testLaunchwordPower120FrancaisSS() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -39,7 +39,7 @@ final class e2e_TCHDWPLaunchwordPower120Francais: XCTestCase {
         XCTAssertTrue(app.buttons["espères"].exists)
         app.buttons["espères"].tap()
         
-        pages.sdbTexts(sdbText: "Tu espères ")
+        pages.checkSdbText(sdbText: "Tu espères ")
         
         pages.backToVocab();
         

@@ -47,7 +47,7 @@ final class e2e_TCHDWPLaunchWordPower42BasicSS: XCTestCase {
         app.buttons["can"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "Restaurant ")
+        pages.checkSdbText(sdbText: "Restaurant ")
         
         pages.backToVocab();
         

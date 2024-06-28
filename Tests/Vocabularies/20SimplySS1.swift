@@ -42,7 +42,7 @@ final class e2e_TCHDWPLaunchWordPower20SimplySS: XCTestCase {
         app.buttons["to drink"].tap()
         app.buttons["juice"].tap()
         
-        pages.sdbTexts(sdbText: "I like to drink juice ")
+        pages.checkSdbText(sdbText: "I like to drink juice ")
         
         pages.backButton.tap()
         pages.backButton.tap()

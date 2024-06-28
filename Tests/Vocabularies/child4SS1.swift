@@ -41,7 +41,7 @@ final class e2e_TCHDWPLaunchchild4SS: XCTestCase {
         XCTAssertTrue(app.buttons["Can I play?"].exists)
         app.buttons["Can I play?"].tap()
         
-        pages.sdbTexts(sdbText: "Can I play? ")
+        pages.checkSdbText(sdbText: "Can I play? ")
         pages.backButton.tap()
     
         pages.backToVocab();

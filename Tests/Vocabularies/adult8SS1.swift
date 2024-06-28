@@ -39,7 +39,7 @@ final class e2e_TCHDWPLaunchadult8SS: XCTestCase {
         XCTAssertTrue(app.buttons["Happy"].exists)
         app.buttons["Happy"].tap()
         
-        pages.sdbTexts(sdbText: "I'm happy. ")
+        pages.checkSdbText(sdbText: "I'm happy. ")
         pages.backButton.tap()
     
         pages.backToVocab();

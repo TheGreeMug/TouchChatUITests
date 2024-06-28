@@ -28,7 +28,7 @@ final class e2e_TCHDWPLaunchwordPower48Espanol: XCTestCase {
 
        
     
-    func testLaunchSintaxis4x5SpanishSS() throws {
+    func testLaunchWordPower48EspanolSS() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -44,7 +44,7 @@ final class e2e_TCHDWPLaunchwordPower48Espanol: XCTestCase {
         app.buttons["que"].tap()
         app.buttons["el"].tap()
         
-        pages.sdbTexts(sdbText: "Comer que el ")
+        pages.checkSdbText(sdbText: "Comer que el ")
         
         pages.backToVocab();
         

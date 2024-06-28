@@ -42,7 +42,7 @@ final class e2e_TCHDWPLaunchSintaxis4x5EnglishSS: XCTestCase {
         XCTAssertTrue(app.buttons["Buy me"].exists)
         app.buttons["Buy me"].tap()
         
-        pages.sdbTexts(sdbText: "Buy me ")
+        pages.checkSdbText(sdbText: "Buy me ")
         
         pages.backButton.tap()
         

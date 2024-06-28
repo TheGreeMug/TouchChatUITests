@@ -39,7 +39,7 @@ final class e2e_TCHDWPLaunchSinSintaxis4x4EnglishSS: XCTestCase {
         app.buttons["eyes"].tap()
         app.buttons["nose"].tap()
         
-        pages.sdbTexts(sdbText: "Eyes nose ")
+        pages.checkSdbText(sdbText: "Eyes nose ")
         
         pages.backButton.tap()
         

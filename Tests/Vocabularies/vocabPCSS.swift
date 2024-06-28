@@ -25,7 +25,7 @@ final class e2e_TCHDWPLaunchvocabPCSS: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testLaunchaphasiaUSSS() throws {
+    func testLaunchVocabPc() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -38,7 +38,7 @@ final class e2e_TCHDWPLaunchvocabPCSS: XCTestCase {
         app.buttons["confused"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "I feel ")
+        pages.checkSdbText(sdbText: "I feel ")
     
         pages.backToVocab();
         

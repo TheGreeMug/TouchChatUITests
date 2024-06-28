@@ -42,7 +42,7 @@ final class e2e_TCHDWPLaunchSinSintaxis4x4SpanishSS: XCTestCase {
         app.buttons["cochera"].tap()
         app.buttons["sala"].tap()
         
-        pages.sdbTexts(sdbText: "Cochera sala ")
+        pages.checkSdbText(sdbText: "Cochera sala ")
         
         
         pages.backButton.tap()

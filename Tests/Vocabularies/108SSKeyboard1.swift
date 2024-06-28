@@ -47,7 +47,7 @@ final class e2e_TCHDWPLaunchWordPower108SSKeyboard: XCTestCase {
         app.buttons["more"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "Mom ")
+        pages.checkSdbText(sdbText: "Mom ")
     
         pages.backToVocab();
         

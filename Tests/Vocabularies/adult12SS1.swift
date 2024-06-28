@@ -41,7 +41,7 @@ final class e2e_TCHDWPLaunchadult12SS: XCTestCase {
         XCTAssertTrue(app.buttons["Daughter"].exists)
         app.buttons["Daughter"].tap()
         
-        pages.sdbTexts(sdbText: "Daughter ")
+        pages.checkSdbText(sdbText: "Daughter ")
         pages.backButton.tap()
     
         pages.backToVocab();

@@ -28,7 +28,7 @@ final class e2e_TCHDWPLaunchwordPower60EspanolBasico: XCTestCase {
 
        
     
-    func testLaunchSintaxis4x5SpanishSS() throws {
+    func testLaunchWordPower60EspanolBasico() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -45,7 +45,7 @@ final class e2e_TCHDWPLaunchwordPower60EspanolBasico: XCTestCase {
         app.buttons["la"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "Espero ")
+        pages.checkSdbText(sdbText: "Espero ")
         
         pages.backToVocab();
         

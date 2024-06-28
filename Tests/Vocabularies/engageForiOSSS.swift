@@ -26,7 +26,7 @@ final class e2e_TCHDWPLaunchEngageiOSSS: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testLaunchaphasiaUSSS() throws {
+    func testLaunchEngageForiOS() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -39,7 +39,7 @@ final class e2e_TCHDWPLaunchEngageiOSSS: XCTestCase {
         app.buttons["Feelings"].tap()
         app.buttons["happy"].tap()
         
-        pages.sdbTexts(sdbText: "Happy ")
+        pages.checkSdbText(sdbText: "Happy ")
         pages.backButton.tap()
         pages.backButton.tap()
     

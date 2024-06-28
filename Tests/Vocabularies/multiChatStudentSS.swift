@@ -47,7 +47,7 @@ final class e2e_TCHDWPLaunchmultiChatStudent: XCTestCase {
         app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "I don't want ")
+        pages.checkSdbText(sdbText: "I don't want ")
         pages.backButton.tap()
         pages.backButton.tap()
     

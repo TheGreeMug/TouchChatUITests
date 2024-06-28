@@ -26,7 +26,7 @@ final class e2e_TCHDWPLaunchvocabPCfrancais: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testLaunchSintaxis4x5SpanishSS() throws {
+    func testLaunchvocabPCFrancaisSS() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -40,7 +40,7 @@ final class e2e_TCHDWPLaunchvocabPCfrancais: XCTestCase {
         app.buttons["mélangé"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "Je suis ")
+        pages.checkSdbText(sdbText: "Je suis ")
         
         pages.backToVocab();
         

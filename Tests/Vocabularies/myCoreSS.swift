@@ -26,7 +26,7 @@ final class e2e_TCHDWPLaunchmyCoreSS: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testLaunchaphasiaUSSS() throws {
+    func testLaunchmyCoreSS() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -39,7 +39,7 @@ final class e2e_TCHDWPLaunchmyCoreSS: XCTestCase {
         app.buttons["eating"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "Are ")
+        pages.checkSdbText(sdbText: "Are ")
     
         pages.backToVocab();
         

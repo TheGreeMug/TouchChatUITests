@@ -46,7 +46,7 @@ final class e2e_TCHDWPLaunchafasiaEspanolSS: XCTestCase {
         
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "Esto es muy ")
+        pages.checkSdbText(sdbText: "Esto es muy ")
         
         pages.backButton.tap()
         pages.backButton.tap()

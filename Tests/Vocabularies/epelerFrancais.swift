@@ -26,7 +26,7 @@ final class e2e_TCHDWPLaunchEpelerfrancais: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testLaunchSintaxis4x5SpanishSS() throws {
+    func testLaunchEpelerFrancaisSS() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -39,7 +39,7 @@ final class e2e_TCHDWPLaunchEpelerfrancais: XCTestCase {
         XCTAssertTrue(app.buttons["Bonjour!"].exists)
         app.buttons["Bonjour!"].tap()
         
-        pages.sdbTexts(sdbText: "Bonjour, comment-allez vous? ")
+        pages.checkSdbText(sdbText: "Bonjour, comment-allez vous? ")
         pages.backButton.tap()
         
         pages.backToVocab();

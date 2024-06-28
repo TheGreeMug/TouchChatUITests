@@ -48,7 +48,7 @@ final class e2e_TCHDWPLaunchWordPower108SS: XCTestCase {
         app.buttons["hair"].tap()
         
         
-        pages.sdbTexts(sdbText: "Hair ")
+        pages.checkSdbText(sdbText: "Hair ")
         pages.backButton.tap()
         pages.backButton.tap()
         

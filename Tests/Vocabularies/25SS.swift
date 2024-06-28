@@ -47,7 +47,7 @@ final class e2e_TCHDWPLaunchWordPower25SS: XCTestCase {
         app.buttons["to eat"].tap()
         app.buttons["cookies"].tap()
         
-        pages.sdbTexts(sdbText: "I want to eat cookies ")
+        pages.checkSdbText(sdbText: "I want to eat cookies ")
         
         pages.backButton.tap()
         pages.backToVocab();

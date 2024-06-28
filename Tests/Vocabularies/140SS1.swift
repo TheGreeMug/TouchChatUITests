@@ -48,7 +48,7 @@ final class e2e_TCHDWPLaunchWordPower140SS: XCTestCase {
         app.buttons["me"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "I am ")
+        pages.checkSdbText(sdbText: "I am ")
     
         pages.backToVocab();
         

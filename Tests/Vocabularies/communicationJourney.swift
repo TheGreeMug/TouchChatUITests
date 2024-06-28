@@ -26,7 +26,7 @@ final class e2e_TCHDWPLaunchCommunicationJourneyFrancais: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testLaunchSintaxis4x5SpanishSS() throws {
+    func testLaunchCommunityJourneyFrancaisSS() throws {
         
         let pages = Pages(app: app)
         app.launch()
@@ -40,7 +40,7 @@ final class e2e_TCHDWPLaunchCommunicationJourneyFrancais: XCTestCase {
         XCTAssertTrue(app.buttons["Comment ça va?"].exists)
         app.buttons["Comment ça va?"].tap()
         
-        pages.sdbTexts(sdbText: "Comment ça va? ")
+        pages.checkSdbText(sdbText: "Comment ça va? ")
         pages.backButton.tap()
         
         pages.backToVocab();

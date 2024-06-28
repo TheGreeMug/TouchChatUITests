@@ -42,7 +42,7 @@ final class e2e_TCHDWPLaunchmultiChat15SS: XCTestCase {
         app.buttons["ir a la oficina"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.sdbTexts(sdbText: "Yo necesito ir a la ")
+        pages.checkSdbText(sdbText: "Yo necesito ir a la ")
         
         pages.backToVocab();
         
